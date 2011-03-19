@@ -1,0 +1,6 @@
+[submodule "js/shortcut-field"]
+	path = js/shortcut-field
+	url = git@github.com:josephschmitt/Shortcut-Field.git
+[submodule "js/utilitybelt"]
+	path = js/utilitybelt
+	url = git@github.com:josephschmitt/UtilityBelt.git
