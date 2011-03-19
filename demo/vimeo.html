@@ -76,8 +76,9 @@
     <script type="text/javascript" charset="utf-8">
         var filtr,
             vimeoData,
-            dataUrl = 'http://vimeo.com/api/v2/josephschmitt/all_videos.json',
-            req = new XHR();
+            dataUrl = 'http://vimeo.com/api/v2/josephschmitt/all_videos.json?callback=onDataLoaded',
+            req = new XHR(),
+            keyword;
     
         window.addEventListener('load', function(e) {
             filtr = new Filtr({
@@ -104,44 +105,45 @@
         /**
          * @param keyword [String]: Value of the filter field.
          */
-        function onRefresh(keyword) {
-            
-            function onDataLoaded(data) {
-                if (!data) {return;}
-                vimeoData = data;
-                
-                var results = [];
-                
-                vimeoData.forEach(function(item) {
-                    //Concatenate all the things you want to use in the search into a single string for easier parsing
-                    item.score = (item.title + ' ' + item.url).score(keyword);
-                    
-                    //Only count as a match if it's got a decent score
-                    if (item.score > 0.1) {
-                        results.push(item);
-                    }
-                });
-                
-                function sortDescending(a, b) {
-                    return b.score - a.score;
-                }
-
-                function sortAscending(a, b) {
-                    return a.score - b.score;
-                }
-                
-                //Sort results and limit to only first 5
-                filtr.refresh(results.sort(sortDescending));
-            }
+        function onRefresh(value) {
+            keyword = value;
             
             //Request data
             if (!vimeoData) {
-                req.get(dataUrl, onDataLoaded);
+                req.getJson(dataUrl);
             }
             //Use cached data
             else {
                 onDataLoaded(vimeoData);
             }
+        }
+        
+        function onDataLoaded(data) {
+            if (!data) {return;}
+            vimeoData = data;
+            
+            var results = [];
+            
+            vimeoData.forEach(function(item) {
+                //Concatenate all the things you want to use in the search into a single string for easier parsing
+                item.score = (item.title + ' ' + item.url).score(keyword);
+                
+                //Only count as a match if it's got a decent score
+                if (item.score > 0.1) {
+                    results.push(item);
+                }
+            });
+            
+            function sortDescending(a, b) {
+                return b.score - a.score;
+            }
+
+            function sortAscending(a, b) {
+                return a.score - b.score;
+            }
+            
+            //Sort results and limit to only first 5
+            filtr.refresh(results.sort(sortDescending));
         }
 
         /**
