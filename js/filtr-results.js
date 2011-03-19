@@ -7,6 +7,9 @@ Filtr.Results = Class.extend({
      *      //Maximum number of results to display
      *      maxResults: 5,
      *
+     *      //Template to build out the results list based on the data
+     *      tmpl: '',
+     *
      *      select: function(winid, tabid) {
      *          //Method to handle what happens when an item is selected
      *      }
@@ -15,6 +18,8 @@ Filtr.Results = Class.extend({
     init: function(element, options) {
         var self = this,
             items = element.querySelectorAll('li'),
+            
+            template = '<% for ( var i = 0; i < length; i++ ) { %>' + options.tmpl + '<% } %>',
 
             curSelection;
 
@@ -30,7 +35,7 @@ Filtr.Results = Class.extend({
                 removeClass(element, 'invisible');
 
                 for (var i = 0, length = items.length; i < length; i++) {
-                    if (i < 5) {
+                    if (i < options.maxResults) {
                         height += items[i].clientHeight + 1;
                     }
                 }
@@ -51,10 +56,9 @@ Filtr.Results = Class.extend({
 
             var targ = e.target;
             //Hovering over child node
-            if (!targ.children.length) {
+            if (!targ.tagName == 'LI') {
                 targ = targ.parentNode;
             }
-
             self.selectResult(targ);
         }
 
@@ -79,22 +83,23 @@ Filtr.Results = Class.extend({
             }
             else {
                 element.innerHTML = tmpl(
-                    '<% for ( var i = 0; i < length; i++ ) { %>\
-                        <li style="background-image:url(<%= results[i].favicon %>) !important;" data-index="<%= i %>" data-win="<%= results[i].winid %>" data-tab="<%= results[i].tabid %>">\
-                            <%= results[i].title %>\
-                            <em><%= results[i].url %></em>\
-                        </li>\
-                     <% } %>',
-                    {results: data, length: Math.min(options.maxResults, data.length) || data.length}
+                    template, {
+                        results: data, 
+                        length: Math.min(options.maxResults, data.length) || data.length
+                    }
                 );
 
+                element.addEventListener('mouseover', onItemHover, false);
+                element.addEventListener('mouseout', onItemLeave, false);
+                element.addEventListener('click', onItemSelect, false);
+                
                 items = element.querySelectorAll('li');
-
-                for (var i = 0; i < items.length; i++) {
-                    items[i].addEventListener('mouseover', onItemHover, false);
-                    items[i].addEventListener('mouseout', onItemLeave, false);
-                    items[i].addEventListener('click', onItemSelect, false);
-                }
+                
+                // for (var i = 0; i < items.length; i++) {
+                //     items[i].addEventListener('mouseover', onItemHover, false);
+                //     items[i].addEventListener('mouseout', onItemLeave, false);
+                //     items[i].addEventListener('click', onItemSelect, false);
+                // }
             }
 
             updateLayout();

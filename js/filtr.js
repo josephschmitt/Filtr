@@ -4,8 +4,17 @@ var Filtr = Class.extend({
      * @param options (Object) - Options for the method.
      *  Eg.
      *  options: {
+     *      //Target element to attach Filtr to
+     *      target: document.body,
+     *      
      *      //Maximum number of results to display
      *      maxResults: 5,
+     *
+     *      //If set to true, filtr will hide itself when focus is lost
+     *      autohide: false,
+     *
+     *      //Template to build out the results list based on the data
+     *      tmpl: '',
      *
      *      refresh: function(value) {
      *          //Method to handle fetching new data
@@ -31,15 +40,19 @@ var Filtr = Class.extend({
      */
     init: function(options) {
         var self = this,
+        
+            target = options.target || document.body,
 
             element = document.createElement('div'),
             wrapper = document.createElement('div'),
             form = document.createElement('form'),
             settingsBtn = document.createElement('a'),
             field = document.createElement('input'),
+            
             resultsList = new Filtr.Results(document.createElement('ul'), {
                 select: onTabSelected, 
-                maxResults: options.maxResults
+                maxResults: options.maxResults || 5,
+                tmpl: options.tmpl || ''
             }),
             settings = new Filtr.Settings(document.createElement('form'), {
                 change: onSettingsChanged,
@@ -67,7 +80,7 @@ var Filtr = Class.extend({
             form.appendChild(field);
             form.appendChild(resultsList.element);
 
-            document.body.insertBefore(element, document.body.firstChild);
+            target.insertBefore(element, target.firstChild);
         }
 
         function addEvents() {
@@ -130,15 +143,22 @@ var Filtr = Class.extend({
         }
 
         function onTabSelected(winid, tabid) {
-            self.hide();
+            if (options.autohide) {
+                self.hide();
+            }
+            else {
+                field.value = '';
+                self.refresh();
+            }
+            
             if (options.select) {
                 options.select.apply(null, [winid, tabid]);
             }
         }
         
-        function onSettingsChanged(settings) {
+        function onSettingsChanged(newSettings) {
             if (options.onSettingsChanged) {
-                options.onSettingsChanged.apply(null, [settings]);
+                options.onSettingsChanged.apply(null, [newSettings]);
             }
         }
 
@@ -219,11 +239,13 @@ var Filtr = Class.extend({
         }
 
         function onWindowBlur(e) {
-            self.hide();
+            if (options.autohide) {
+                self.hide();
+            }
         }
 
         function onWindowClick(e) {
-            if (!hasAncestor(e.target, element) || e.target == element) {
+            if (options.autohide && (!hasAncestor(e.target, element) || e.target == element)) {
                 self.hide();
             }
         }

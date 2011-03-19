@@ -93,8 +93,6 @@
 
 .filtr .input input {
     font-size: 22px !important;
-    padding-left: 35px !important;
-    background: #fff url('../images/bird.png') no-repeat 3px center !important;
 }
 
 .filtr .input .settingsBtn {
