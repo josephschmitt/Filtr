@@ -10,8 +10,9 @@ Filtr.Results = Class.extend({
      *      //Template to build out the results list based on the data
      *      tmpl: '',
      *
-     *      select: function(winid, tabid) {
+     *      select: function(data) {
      *          //Method to handle what happens when an item is selected
+     *          //The data object contains the values of all the data-attributes
      *      }
      *  }
      */

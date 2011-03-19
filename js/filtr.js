@@ -25,8 +25,9 @@ var Filtr = Class.extend({
      *          //Method called after refresh operation
      *      },
      *
-     *      select: function(winid, tabid) {
+     *      select: function(data) {
      *          //Method to handle what happens when an item is selected
+     *          //The data object contains the values of all the data-attributes
      *      },
      *
      *      onDestroyed: function() {
@@ -52,7 +53,7 @@ var Filtr = Class.extend({
             autohide = options.autohide == undefined ? true : options.autohide,
             
             resultsList = new Filtr.Results(document.createElement('ul'), {
-                select: onTabSelected, 
+                select: onSelected, 
                 maxResults: options.maxResults || 5,
                 tmpl: options.tmpl || ''
             }),
@@ -144,7 +145,7 @@ var Filtr = Class.extend({
             }
         }
 
-        function onTabSelected(winid, tabid) {
+        function onSelected(data) {
             if (autohide) {
                 self.hide();
             }
@@ -154,7 +155,7 @@ var Filtr = Class.extend({
             }
             
             if (options.select) {
-                options.select.apply(null, [winid, tabid]);
+                options.select.call(null, data);
             }
         }
         
