@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Filtr Demo</title>
+    <link rel="stylesheet" href="../styles/styles.css" type="text/css">
+</head>
+<body>
+    <script src="../js/keycodes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/browserdetect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utilitybelt/utilitybelt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/shortcut-field/shortcut-field.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr-results.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr-settings.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var filtr = new Filtr({
+            autohide: false,
+        
+            //In the template, results is an array with the result data passed in the refresh method
+            tmpl: '<li data-index="<%= i %>" data-arbitrary="<%= results[i].arbitrary %>"><%= results[i].title %></li>',
+
+            refresh: onRefresh,
+            select: onSelected,
+            onSettingsChanged: onSettingsChanged
+        });
+        
+        filtr.show();
+
+        /**
+         * @param value [String]: Value of the filter field.
+         */
+        function onRefresh(value) {
+            //Usually here you do some kind of action on the search term ('value' parameter).
+            //In this demo, we'll always just return the same results unless the value is empty
+            var data = value ? [
+                {title: 'Title of result 1', arbitrary: 'Some kind of data.'},
+                {title: 'Some kind of cool stuff here', arbitrary: 'Could be anything really.'},
+                {title: 'And more cool stuff here', arbitrary: 'Passed on to the results.'}
+            ] : null;
+            
+            filtr.refresh(data);
+        }
+
+        /**
+         * @param data [Object]: Object with all of the data attributes of the item.
+         */
+        function onSelected(data) {
+            //In this example, the data object could look like the following: {index: 0, arbitrary: 'Some kind of data.'};
+        }
+
+        /**
+         * @param newSettings [Object]: New settings that were updated.
+         */
+        function onSettingsChanged(newSettings) {
+
+        }
+    </script>
+</body>
+</html>
