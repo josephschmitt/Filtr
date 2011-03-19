@@ -10,8 +10,8 @@ var Filtr = Class.extend({
      *      //Maximum number of results to display
      *      maxResults: 5,
      *
-     *      //If set to true, filtr will hide itself when focus is lost
-     *      autohide: false,
+     *      //If set to true (default), filtr will hide itself when focus is lost
+     *      autohide: true,
      *
      *      //Template to build out the results list based on the data
      *      tmpl: '',
@@ -48,6 +48,8 @@ var Filtr = Class.extend({
             form = document.createElement('form'),
             settingsBtn = document.createElement('a'),
             field = document.createElement('input'),
+            
+            autohide = options.autohide == undefined ? true : options.autohide,
             
             resultsList = new Filtr.Results(document.createElement('ul'), {
                 select: onTabSelected, 
@@ -143,7 +145,7 @@ var Filtr = Class.extend({
         }
 
         function onTabSelected(winid, tabid) {
-            if (options.autohide) {
+            if (autohide) {
                 self.hide();
             }
             else {
@@ -239,13 +241,13 @@ var Filtr = Class.extend({
         }
 
         function onWindowBlur(e) {
-            if (options.autohide) {
+            if (autohide) {
                 self.hide();
             }
         }
 
         function onWindowClick(e) {
-            if (options.autohide && (!hasAncestor(e.target, element) || e.target == element)) {
+            if (autohide && (!hasAncestor(e.target, element) || e.target == element)) {
                 self.hide();
             }
         }
