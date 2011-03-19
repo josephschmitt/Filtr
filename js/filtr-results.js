@@ -20,7 +20,7 @@ Filtr.Results = Class.extend({
         var self = this,
             items = element.querySelectorAll('li'),
             
-            template = '<% for ( var i = 0; i < length; i++ ) { %>' + options.tmpl + '<% } %>',
+            template = '<% for ( var i = 0; i < length; i++ ) { var result = results[i]; %>' + options.tmpl + '<% } %>',
 
             curSelection;
 

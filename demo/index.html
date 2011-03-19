@@ -18,8 +18,8 @@
         var filtr = new Filtr({
             autohide: false,
         
-            //In the template, results is an array with the result data passed in the refresh method
-            tmpl: '<li data-index="<%= i %>" data-arbitrary="<%= results[i].arbitrary %>"><%= results[i].title %></li>',
+            //In the template, the result object contains the data for that individual result
+            tmpl: '<li data-index="<%= i %>" data-arbitrary="<%= result.arbitrary %>"><%= result.title %></li>',
 
             refresh: onRefresh,
             select: onSelected,
