@@ -283,6 +283,8 @@ var Filtr = Class.extend({
         self.refresh = function(data) {
             if (!element) {return false;}
             resultsList.refresh(data);
+            
+            wrapper.style.minHeight = form.clientHeight + 'px';
 
             if (options.onRefreshed) {
                 options.onRefreshed(element.clientHeight);

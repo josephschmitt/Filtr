@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Filtr Demo - My Vimeo Videos</title>
+    <link rel="stylesheet" href="../styles/styles.css" type="text/css">
+    <style>
+        .filtr {
+            -webkit-box-pack: end !important;
+        }
+        
+        .filtr .wrapper {
+            margin-right: 20px !important;
+        }
+        
+        .filtr .input ul li {
+            overflow: hidden !important;
+        }
+        
+        .filtr .input ul li h1 {
+            font-size: 1.25em !important;
+            margin-bottom: 3px !important;
+        }
+        
+        .filtr .input ul li span,
+        .filtr .input ul li > a {
+            font-size: 0.85em !important;
+        }
+        
+        .filtr .input ul li > a {
+            display: block !important;
+        }
+        
+        .filtr .input ul li img {
+            float: left !important;
+            padding-right: 10px !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vimeo Filtr Demo</h1>
+    <p>Search through all my videos on Vimeo. Select a video to embed it below.</p>
+    <div id="embed"></div>
+    
+    <script src="../js/keycodes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/browserdetect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/utilitybelt/utilitybelt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/shortcut-field/shortcut-field.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr-results.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/filtr-settings.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="js/string_score.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var filtr,
+            vimeoData,
+            dataUrl = 'http://vimeo.com/api/v2/josephschmitt/all_videos.json',
+            req = new XHR();
+    
+        window.addEventListener('load', function(e) {
+            filtr = new Filtr({
+                maxResults: 3,
+                autohide: false,
+
+                //In the template, the result object contains the data for that individual result
+                //Always ensure to have at last data-index as an attribute in your list item
+                tmpl: '<li data-index="<%= i %>" data-clipid="<%= result.id %>">\
+                            <img src="<%= result.thumbnail_small %>" width="80" />\
+                            <h1><%= result.title %></h1>\
+                            <span>by <a href="<%= result.user_url %>"><%= result.user_name %></a></span>\
+                            <a href="<%= result.url %>"><%= result.url %></a>\
+                       </li>',
+
+                refresh: onRefresh,
+                select: onSelected,
+                onSettingsChanged: onSettingsChanged
+            });
+
+            filtr.show();
+        });
+
+        /**
+         * @param keyword [String]: Value of the filter field.
+         */
+        function onRefresh(keyword) {
+            
+            function onDataLoaded(data) {
+                vimeoData = data;
+                
+                var results = [];
+                
+                vimeoData.forEach(function(item) {
+                    //Concatenate all the things you want to use in the search into a single string for easier parsing
+                    item.score = (item.title + ' ' + item.url).score(keyword);
+                    
+                    //Only count as a match if it's got a decent score
+                    if (item.score > 0.1) {
+                        results.push(item);
+                    }
+                });
+                
+                function sortDescending(a, b) {
+                    return b.score - a.score;
+                }
+
+                function sortAscending(a, b) {
+                    return a.score - b.score;
+                }
+                
+                //Sort results and limit to only first 5
+                filtr.refresh(results.sort(sortDescending));
+            }
+            
+            //Request data
+            if (!vimeoData) {
+                req.get(dataUrl, onDataLoaded);
+            }
+            //Use cached data
+            else {
+                onDataLoaded(vimeoData);
+            }
+        }
+
+        /**
+         * @param data [Object]: Object with all of the data attributes of the item.
+         */
+        function onSelected(data) {
+            document.getElementById('embed').innerHTML = '<iframe src="http://player.vimeo.com/video/'+data.clipid+'" width="500" height="281" frameborder="0"></iframe>'
+        }
+
+        /**
+         * @param newSettings [Object]: New settings that were updated.
+         */
+        function onSettingsChanged(newSettings) {
+
+        }
+    </script>
+</body>
+</html>

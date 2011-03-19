@@ -53,7 +53,6 @@ Filtr.Results = Class.extend({
         }
 
         function onItemHover(e) {
-            console.log(e);
             e.cancelBubble = true;
 
             var targ = e.target;
