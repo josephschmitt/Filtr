@@ -5,6 +5,22 @@
     <title>Filtr Demo - My Vimeo Videos</title>
     <link rel="stylesheet" href="../styles/styles.css" type="text/css">
     <style>
+        body {
+            background: #f7f7f7;
+        }
+        .content {
+            font-family: 'Helvetica Neue', 'Helvetica', 'Arial';
+            font-weight: normal;
+            color: #343434;
+        }
+        
+        .content h1 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+            font-size: 32px;
+            font-weight: normal;
+        }
+        
+        /** Filtr Override Styles for this example**/
         .filtr {
             -webkit-box-pack: end !important;
         }
@@ -38,9 +54,11 @@
     </style>
 </head>
 <body>
-    <h1>Vimeo Filtr Demo</h1>
-    <p>Search through all my videos on Vimeo. Select a video to embed it below.</p>
-    <div id="embed"></div>
+    <div class="content">
+        <h1>Vimeo Filtr Demo</h1>
+        <p>Search through <a href="http://vimeo.com/josephschmitt/">all of my</a> and <a href="http://vimeo.com/josephschmitt/contacts">my contacts'</a> videos on Vimeo. <br/>Select a video to embed it below.</p>
+        <div id="embed"></div>
+    </div>
     
     <script src="../js/keycodes.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/browserdetect.js" type="text/javascript" charset="utf-8"></script>
@@ -61,7 +79,7 @@
     
         window.addEventListener('load', function(e) {
             filtr = new Filtr({
-                maxResults: 3,
+                maxResults: 5,
                 autohide: false,
 
                 //In the template, the result object contains the data for that individual result
