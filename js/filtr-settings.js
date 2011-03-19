@@ -1,4 +1,4 @@
-Snipe.Settings = Class.extend({
+Filtr.Settings = Class.extend({
     /**
      * Init method
      * @param options (Object) - Options for the method.
@@ -27,7 +27,7 @@ Snipe.Settings = Class.extend({
         self.element = element;
 
         element.className = 'settings';
-        shortcutGroup.innerHTML = '<label title="Click to edit the keyboard shortcut used to show/hide Snipe.">Shortcut</label>';
+        shortcutGroup.innerHTML = '<label title="Click to edit the keyboard shortcut used to show/hide.">Shortcut</label>';
         copyright.innerHTML = '&copy; 2011 Joseph Schmitt | <a href="http://reusablebits.com">Reusable Bits</a>';
         
         shortcutGroup.setAttribute('class', 'shortcut');

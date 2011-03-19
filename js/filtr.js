@@ -1,4 +1,4 @@
-var Snipe = Class.extend({
+var Filtr = Class.extend({
     /**
      * Init method
      * @param options (Object) - Options for the method.
@@ -21,11 +21,11 @@ var Snipe = Class.extend({
      *      },
      *
      *      onDestroyed: function() {
-     *          //Method to handle what happens when snipe is destroyed
+     *          //Method to handle what happens when destroyed
      *      }
      *      
      *      onSettingsChanged: function(settings) {
-     *          //Method to handle what happens when snipe's settings are updated
+     *          //Method to handle what happens when settings are updated
      *      }
      *  }
      */
@@ -37,11 +37,11 @@ var Snipe = Class.extend({
             form = document.createElement('form'),
             settingsBtn = document.createElement('a'),
             field = document.createElement('input'),
-            resultsList = new Snipe.Results(document.createElement('ul'), {
+            resultsList = new Filtr.Results(document.createElement('ul'), {
                 select: onTabSelected, 
                 maxResults: options.maxResults
             }),
-            settings = new Snipe.Settings(document.createElement('form'), {
+            settings = new Filtr.Settings(document.createElement('form'), {
                 change: onSettingsChanged,
                 submit: onSettings
             }),
@@ -53,7 +53,7 @@ var Snipe = Class.extend({
 // PRIVATE METHODS ____________________________________________________________
 
         function create() {
-            addClass(element, 'snipe');
+            addClass(element, 'filtr');
             addClass(wrapper, 'wrapper');
             addClass(form, 'input');
             addClass(settingsBtn, 'settingsBtn');
@@ -79,10 +79,10 @@ var Snipe = Class.extend({
             //Bring up the settings window
             settingsBtn.addEventListener('click', onSettings, false);
 
-            //Hide Snipe when the window loses focus
+            //Hide when the window loses focus
             window.addEventListener('blur', onWindowBlur);
 
-            //Hide snipe when clicking outside the snipe window
+            //Hide when clicking outside the window
             window.addEventListener('click', onWindowClick);
         }
 
@@ -167,7 +167,7 @@ var Snipe = Class.extend({
             
             //Esc closes
             else if (e.keyCode == KEY_ESC) {
-                snipe.hide();
+                self.hide();
             }
         }
 

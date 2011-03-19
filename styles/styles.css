@@ -1,5 +1,5 @@
 /* CSS RESET */
-.snipe *, .snipe div, .snipe, .snipe form, .snipe input, .snipe ul, .snipe li, .snipe div, .snipe em {
+.filtr *, .filtr div, .filtr, .filtr form, .filtr input, .filtr ul, .filtr li, .filtr div, .filtr em {
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
@@ -8,11 +8,11 @@
     vertical-align: baseline !important;
 }
 
-.snipe .invisible {
+.filtr .invisible {
     display: none !important;
 }
 
-.snipe {
+.filtr {
     font-family: Georgia, sans-serif !important;
 
     display: -webkit-box !important;
@@ -27,12 +27,12 @@
     left: 0 !important;
 }
 
-.snipe.popup {
+.filtr.popup {
     min-height: 400px !important;
     overflow: hidden !important;
 }
 
-.snipe .wrapper {
+.filtr .wrapper {
     width: 70% !important;
     max-width: 400px !important;
     height: 60px !important;
@@ -49,17 +49,17 @@
     -webkit-transform: translateY(25px) !important;
 }
 
-.snipe.in .wrapper {
+.filtr.in .wrapper {
     -webkit-transform: translateY(0) !important;
     opacity: 1 !important;
 }
 
-.snipe.out .wrapper {
+.filtr.out .wrapper {
     -webkit-transform: translateY(-25px) !important;
     opacity: 0 !important;
 }
 
-.snipe .wrapper > form {
+.filtr .wrapper > form {
     -webkit-border-radius: 5px !important;
     -webkit-box-sizing: border-box !important;
     -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.75) !important;
@@ -73,13 +73,13 @@
     width: 100% !important;
 }
 
-.snipe .input {
+.filtr .input {
     background: rgba(0, 0, 0, 0.6) !important;
     position: relative !important;
     z-index: 1;
 }
 
-.snipe input {
+.filtr input {
     -webkit-box-sizing: border-box !important;
 
     font-family: inherit !important;
@@ -91,13 +91,13 @@
     width: 100% !important;
 }
 
-.snipe .input input {
+.filtr .input input {
     font-size: 22px !important;
     padding-left: 35px !important;
     background: #fff url('../images/bird.png') no-repeat 3px center !important;
 }
 
-.snipe .input .settingsBtn {
+.filtr .input .settingsBtn {
     display: block !important;
     width: 18px !important;
     height: 17px !important;
@@ -111,7 +111,7 @@
     right: 12px !important;
 }
 
-.snipe .input .settingsBtn:hover {
+.filtr .input .settingsBtn:hover {
     opacity: 0.85 !important;
 }
 
@@ -120,7 +120,7 @@
     Results
 */
 
-.snipe ul {
+.filtr ul {
     background: rgba(255, 255, 255, 0.9) !important;
     margin: 1px !important;
     overflow-y: auto !important;
@@ -128,7 +128,7 @@
     list-style-type: none !important;
 }
 
-.snipe ul li {
+.filtr ul li {
     overflow: hidden !important;
     list-style: none !important;
     font-size: 16px !important;
@@ -145,16 +145,16 @@
     background-size: 16px 16px !important;
 }
 
-.snipe ul li.active {
+.filtr ul li.active {
     background-color: white !important;
 }
 
-.snipe ul li:first-child {
+.filtr ul li:first-child {
     border-top: 0 !important;
     margin-top: 0 !important;
 }
 
-.snipe ul li em {
+.filtr ul li em {
     display: inline !important;
     font-size: 12px !important;
     font-weight: normal !important;
@@ -168,13 +168,13 @@
 /*
     Settings
 */
-.snipe .wrapper > .settings {
+.filtr .wrapper > .settings {
     -webkit-transform: rotateY(180deg) !important;
     position: absolute !important;
     top: 0 !important;
 }
 
-.snipe form.settings {
+.filtr form.settings {
     font-size: 16px !important;
     color: #757575 !important;
     text-shadow: #111 -1px -1px 0px !important;
@@ -183,75 +183,75 @@
     -webkit-box-sizing: border-box !important;
 }
 
-.snipe.popup .settings {
+.filtr.popup .settings {
     width: 100% !important;
     padding: 10px !important;
 }
 
-.snipe form.settings h1 {
+.filtr form.settings h1 {
     font-size: 20px !important;
 }
 
-.snipe form.settings p {
+.filtr form.settings p {
     font-size: 13px !important;
     margin: 0 0 20px !important;
     color: #ccc !important;
     line-height: 18px !important;
 }
 
-.snipe .settings fieldgroup {
+.filtr .settings fieldgroup {
     margin-bottom: 10px !important;
     display: block !important;
 }
 
-.snipe form.settings fieldgroup p {
+.filtr form.settings fieldgroup p {
     margin: 5px 0 10px !important;
 }
 
-.snipe.popup .settings fieldgroup {
+.filtr.popup .settings fieldgroup {
     margin-bottom: 20px !important;
 }
 
-.snipe .settings label,
-.snipe .settings h1 {
+.filtr .settings label,
+.filtr .settings h1 {
     display: block !important;
     margin-bottom: 7px !important;
 }
 
-.snipe .settings label em,
-.snipe .settings h1 em {
+.filtr .settings label em,
+.filtr .settings h1 em {
     color: rgba(255, 255, 255, 0.5) !important;
     font-size: 0.9em !important
 }
 
-.snipe .settings .shortcut-field {
+.filtr .settings .shortcut-field {
     position: relative !important;
     display: block !important;
     -webkit-box-flex: 1 !important;
 }
 
-.snipe .settings fieldgroup.done {
+.filtr .settings fieldgroup.done {
     display: -webkit-box !important;
     -webkit-box-align: end !important;
     margin-bottom: 0 !important;
 }
 
-.snipe .settings .done small {
+.filtr .settings .done small {
     font-size: 11px !important;
     text-align: left !important;
     display: block !important;
     -webkit-box-flex: 1 !important;
 }
 
-.snipe .settings a,
-.snipe .settings a:link,
-.snipe .settings a:hover {
+.filtr .settings a,
+.filtr .settings a:link,
+.filtr .settings a:hover {
     color: #09A7B5 !important;
     border: 0 !important;
     text-decoration: underline !important;
 }
 
-.snipe .settings input[type="button"].done {
+.filtr .settings input[type="button"].done {
     -webkit-appearance: push-button  !important;
     width: auto !important;
     font-size: 12px !important;
@@ -262,16 +262,16 @@
     border: 0 !important;
 }
 
-.snipe .settings span .clear,
-.snipe .settings span.edit .revert {
+.filtr .settings span .clear,
+.filtr .settings span.edit .revert {
     display: block !important;
 }
 
-.snipe.settings .input {
+.filtr.settings .input {
     -webkit-transform: rotateY(-180deg) !important;
 }
 
-.snipe.settings .settings {
+.filtr.settings .settings {
     -webkit-transform: rotateY(0deg) !important;
 }
 
@@ -279,14 +279,14 @@
 /*
     Shortcut Field
 */
-.snipe .settings input {
+.filtr .settings input {
     font-size: 16px !important;
     -webkit-border-radius: 5px !important;
     border: 2px solid #333 !important;
     background-clip: padding-box !important;
 }
 
-.snipe .settings .shortcut-field button {
+.filtr .settings .shortcut-field button {
     position: absolute !important;
     top: 50% !important;
     right: 5px !important;
@@ -300,31 +300,31 @@
     -webkit-appearance: none !important;
 }
 
-.snipe .settings .shortcut-field button.clear {
+.filtr .settings .shortcut-field button.clear {
     background: #bfbfbf !important;
     -webkit-mask-box-image: url('../images/close-btn.png') !important;
 }
 
-.snipe .settings .shortcut-field button.clear:hover {
+.filtr .settings .shortcut-field button.clear:hover {
     background: #a6a6a6 !important;
 }
 
-.snipe .settings .shortcut-field button.revert {
+.filtr .settings .shortcut-field button.revert {
     background: #4572bc !important;
     -webkit-mask-box-image: url('../images/revert-btn.png') !important;
 }
 
-.snipe .settings .shortcut-field button.revert:hover {
+.filtr .settings .shortcut-field button.revert:hover {
     background: #4572bc !important;
 }
 
-.snipe .settings .shortcut-field.edit input {
+.filtr .settings .shortcut-field.edit input {
     border: 2px solid #4572bc !important;
 }
 
-.snipe .settings .shortcut-field.edit .clear,
-.snipe .settings .shortcut-field.empty .clear,
-.snipe .settings .shortcut-field .revert {
+.filtr .settings .shortcut-field.edit .clear,
+.filtr .settings .shortcut-field.empty .clear,
+.filtr .settings .shortcut-field .revert {
     display: none !important;
 }
 
@@ -332,49 +332,22 @@
 /*
     Overrides if 3D transforms aren't supported
 */
-.snipe.anim2d .wrapper > form {
+.filtr.anim2d .wrapper > form {
     -webkit-transition: opacity 150ms ease-out !important;
 }
 
-.snipe.anim2d .wrapper > .settings {
+.filtr.anim2d .wrapper > .settings {
     opacity: 0 !important;
 }
 
-.snipe.anim2d.settings .wrapper > .settings {
+.filtr.anim2d.settings .wrapper > .settings {
     -webkit-transform: rotateY(0deg) !important;
     opacity: 1 !important;
     z-index: 1;
 }
 
-.snipe.anim2d.settings .input {
+.filtr.anim2d.settings .input {
     -webkit-transform: rotateY(0deg) !important;
     opacity: 0 !important;
     z-index: 0 !important;
-}
-
-
-/*
-    Overrides for when in Chrome popup window
-*/
-#snipe-popup {
-    overflow: hidden !important;
-}
-
-#snipe-popup .snipe {
-    width: auto !important;
-    position: static !important;
-    -webkit-transform: none !important;
-    -webkit-transition-property: opacity !important;
-}
-
-#snipe-popup .snipe.in {
-    -webkit-transform: none !important;
-}
-
-#snipe-popup .snipe.out {
-    -webkit-transform: none !important;
-}
-
-#snipe-popup .snipe .wrapper {
-    width: 400px !important;
 }

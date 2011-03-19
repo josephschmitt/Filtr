@@ -1,3 +1,3 @@
-# Snipe core
+# Filtr
 
-Contains all the shared UI components and logic for the [Snipe extension](https://github.com/josephschmitt/Snipe) that is shared between the different extension types on different browsers.
+UI widget containing an input field and results that get filtered as you type.

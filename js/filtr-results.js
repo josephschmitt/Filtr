@@ -1,4 +1,4 @@
-Snipe.Results = Class.extend({
+Filtr.Results = Class.extend({
     /**
      * Init method
      * @param options (Object) - Options for the method.
