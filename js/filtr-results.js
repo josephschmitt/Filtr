@@ -52,6 +52,7 @@ Filtr.Results = Class.extend({
         }
 
         function onItemHover(e) {
+            console.log(e);
             e.cancelBubble = true;
 
             var targ = e.target;
@@ -129,7 +130,17 @@ Filtr.Results = Class.extend({
                 item = curSelection;
             }
             
-            options.select.apply(null, [item.getAttribute('data-win'), item.getAttribute('data-tab')]);
+            //Collect data-attributes into an object
+            var itemData = {};
+            for (var i=0, length = item.attributes.length, attr; i < length; i++) {
+                attr = item.attributes[i];
+                if (attr.name.indexOf('data-') == 0) {
+                    itemData[attr.name.split('data-').join('')] = attr.value;
+                }
+            }
+            
+            //Pass data-attributes to select callback
+            options.select.call(null, itemData);
         };
 
         self.destroy = function() {
