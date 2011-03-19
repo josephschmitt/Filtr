@@ -57,7 +57,7 @@ Filtr.Results = Class.extend({
 
             var targ = e.target;
             //Hovering over child node
-            if (!targ.tagName == 'LI') {
+            while (targ.tagName != 'LI') {
                 targ = targ.parentNode;
             }
             self.selectResult(targ);
@@ -68,7 +68,7 @@ Filtr.Results = Class.extend({
 
             var targ = e.target;
             //Hovering over child node
-            if (!targ.children.length) {
+            while (targ.tagName != 'LI') {
                 targ = targ.parentNode;
             }
 
